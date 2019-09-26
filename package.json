@@ -20,8 +20,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index",
-    "start": "cross-env NODE_ENVIRONMENT=production node index",
-    "build": "my-framework build --output public"
+    "start": "cross-env NODE_ENVIRONMENT=production node index"
   },
   "dependencies": {
     "@koa/cors": "^3.0.0",
