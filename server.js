@@ -6,6 +6,7 @@ const BodyParser = require('koa-bodyparser')
 const Helmet = require('koa-helmet')
 const respond = require('koa-respond')
 const mongoose = require('mongoose');
+const fs = require('fs');
 
 //process.env["NODE_CONFIG_DIR"] = '../config';
 const config = require('config');
@@ -35,7 +36,16 @@ app.use(respond())
 require('./routes')(router)
 app.use(router.routes())
 app.use(router.allowedMethods())
-app.use(require('koa-static')('./public'));
+
+const index = fs.readFileSync(path.join(__dirname, 'public/index.html'));
+app.use(async (ctx, next) => {
+  if (!ctx.url.startsWith('/v1')) {
+    ctx.set('content-type', 'text/html');
+    ctx.body = index;
+  }
+});
+
+//app.use(require('koa-static')('./public'));
 
 mongoose.connect(config.get('mongodb.uri'));
 module.exports = app
