@@ -22,6 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.use(Cors())
+app.use(require('koa-static')('./public'));
 app.use(BodyParser({
   enableTypes: ['json'],
   jsonLimit: '5mb',
@@ -46,7 +47,7 @@ app.use(async (ctx, next) => {
   }
 });
 
-app.use(require('koa-static')('./public'));
+
 
 mongoose.connect(config.get('mongodb.uri'));
 module.exports = app
