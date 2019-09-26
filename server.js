@@ -46,7 +46,7 @@ app.use(async (ctx, next) => {
   }
 });
 
-//app.use(require('koa-static')('./public'));
+app.use(require('koa-static')('./public'));
 
 mongoose.connect(config.get('mongodb.uri'));
 module.exports = app
