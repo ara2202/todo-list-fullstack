@@ -7,6 +7,7 @@ const Helmet = require('koa-helmet')
 const respond = require('koa-respond')
 const mongoose = require('mongoose');
 const fs = require('fs');
+const path = require('path');
 
 //process.env["NODE_CONFIG_DIR"] = '../config';
 const config = require('config');
